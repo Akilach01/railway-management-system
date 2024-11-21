@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="522.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse.railway_management.railway_management_system.controller.bookingController">
+   <children>
+      <TableView layoutX="14.0" layoutY="288.0" prefHeight="225.0" prefWidth="636.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="booking Id" />
+          <TableColumn prefWidth="96.0" text="booking date" />
+            <TableColumn prefWidth="91.20001220703125" />
+            <TableColumn prefWidth="91.20001220703125" />
+            <TableColumn prefWidth="91.20001220703125" />
+            <TableColumn prefWidth="91.20001220703125" />
+        </columns>
+      </TableView>
+      <TextField layoutX="126.0" layoutY="89.0" />
+      <Button layoutX="389.0" layoutY="234.0" mnemonicParsing="false" onAction="#saveOnAction" text="save" />
+      <Button layoutX="456.0" layoutY="234.0" mnemonicParsing="false" onAction="#updateONAction" text="update" />
+      <Button layoutX="533.0" layoutY="234.0" mnemonicParsing="false" onAction="#deleteOnAction" text="delete" />
+      <TextField layoutX="334.0" layoutY="89.0" />
+   </children>
+</AnchorPane>
