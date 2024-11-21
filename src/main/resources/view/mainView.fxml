@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse.railway_management.railway_management_system.controller.mainviewContoller">
    <children>
       <VBox layoutX="-1.0" prefHeight="535.0" prefWidth="150.0" style="-fx-background-color: #44b6dc;" />
-      <AnchorPane fx:id="content" layoutX="146.0" prefHeight="522.0" prefWidth="671.0" />
+      <AnchorPane fx:id="content" layoutX="146.0" prefHeight="535.0" prefWidth="671.0" />
       <Button alignment="CENTER" layoutX="11.0" layoutY="342.0" mnemonicParsing="false" onAction="#navigateToPromotion" prefHeight="46.0" prefWidth="126.0" style="-fx-background-color: #ffffff;" text="Promotions">
          <font>
             <Font name="System Bold" size="12.0" />

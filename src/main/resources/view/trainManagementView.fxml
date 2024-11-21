@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="520.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse.railway_management.railway_management_system.controller.trainController">
+<AnchorPane prefHeight="535.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse.railway_management.railway_management_system.controller.trainController">
    <children>
-      <ImageView fitHeight="520.0" fitWidth="665.0">
+      <ImageView fitHeight="535.0" fitWidth="671.0">
          <image>
             <Image url="@../images/train%20coming%20in.jpg" />
          </image>
@@ -35,7 +35,7 @@
       </Button>
       <TextField layoutX="126.0" layoutY="113.0" promptText="Train Id" />
       <TextField layoutX="361.0" layoutY="113.0" promptText="Train Name" />
-      <TableView layoutX="13.0" layoutY="306.0" prefHeight="206.0" prefWidth="642.0">
+      <TableView layoutX="13.0" layoutY="306.0" prefHeight="215.0" prefWidth="642.0">
         <columns>
           <TableColumn fx:id="colTrainId" prefWidth="160.7999906539917" text="Train Id" />
           <TableColumn fx:id="colTrainName" prefWidth="240.7999725341797" text="Train Name" />

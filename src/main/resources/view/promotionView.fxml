@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="520.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse.railway_management.railway_management_system.controller.promotionController">
+<AnchorPane prefHeight="535.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse.railway_management.railway_management_system.controller.promotionController">
    <children>
       <TextField layoutX="54.0" layoutY="49.0" promptText="Promotion Id" />
       <TextField layoutX="251.0" layoutY="49.0" promptText="Promotion Name" />
@@ -40,7 +40,7 @@
          </font>
       </Button>
       <TextField layoutX="446.0" layoutY="48.0" prefHeight="26.0" prefWidth="150.0" promptText="Booking id" />
-      <TableView layoutX="12.0" layoutY="293.0" prefHeight="212.0" prefWidth="642.0">
+      <TableView layoutX="12.0" layoutY="293.0" prefHeight="232.0" prefWidth="642.0">
         <columns>
           <TableColumn fx:id="colPrId" prefWidth="82.39999771118164" text="promotion Id" />
           <TableColumn fx:id="colPrName" prefWidth="79.19998168945312" text="Pr name" />

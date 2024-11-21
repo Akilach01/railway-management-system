@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="522.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse.railway_management.railway_management_system.controller.bookingController">
+<AnchorPane prefHeight="535.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse.railway_management.railway_management_system.controller.bookingController">
    <children>
-      <ImageView fitHeight="527.0" fitWidth="700.0" layoutY="-3.0">
+      <ImageView fitHeight="541.0" fitWidth="700.0" layoutY="-3.0">
          <image>
             <Image url="@../images/railway%20ticket%20counter.jpg" />
          </image>

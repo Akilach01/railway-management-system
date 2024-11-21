@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="520.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse.railway_management.railway_management_system.controller.userController">
+<AnchorPane prefHeight="535.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse.railway_management.railway_management_system.controller.userController">
    <children>
       <TextField layoutX="131.0" layoutY="116.0" promptText="User Id">
          <font>
@@ -39,7 +39,7 @@
          <font>
             <Font size="13.0" />
          </font></Button>
-      <TableView layoutX="13.0" layoutY="306.0" prefHeight="200.0" prefWidth="638.0">
+      <TableView layoutX="16.0" layoutY="305.0" prefHeight="215.0" prefWidth="638.0">
         <columns>
           <TableColumn fx:id="colUserId" prefWidth="110.40002727508545" text="User_Id" />
           <TableColumn fx:id="colUserName" prefWidth="187.99998474121094" text="Name" />
