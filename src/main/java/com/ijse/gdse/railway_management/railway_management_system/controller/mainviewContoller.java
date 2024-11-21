@@ -51,8 +51,6 @@ public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
 
-
-
     public void navigateTo(String fxmlPath) {
         try {
             content.getChildren().clear();
