@@ -4,7 +4,7 @@ module com.ijse.gdse.railway_management.railway_management_system {
     requires lombok;
     requires java.sql;
     requires net.sf.jasperreports.core;
-
+    requires java.mail;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
