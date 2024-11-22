@@ -119,8 +119,8 @@ public class userController {
             new Alert(Alert.AlertType.ERROR, "Fail to load page!").show();
         }
 
-        @FXML
-        void openSendMailModel (ActionEvent event){
+      /*  @FXML
+        void openSendMailModel(ActionEvent event){
             userTm selectedItem = tbluser.getSelectionModel().getSelectedItem();
             if (selectedItem == null) {
                 new Alert(Alert.AlertType.WARNING, "Please select customer..!");
@@ -154,6 +154,7 @@ public class userController {
                 e.printStackTrace();
             }
         }
+    } */
     }
 }
 

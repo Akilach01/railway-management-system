@@ -17,7 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import com.ijse.gdse.railway_management.railway_management_system.Model.loginModel;
 public class loginController {
 
     public loginController() {
@@ -37,20 +37,44 @@ public class loginController {
     @FXML
     private Button btnLogin;
 
+    private final loginModel login = new loginModel();
+
     @FXML
         public void btnLogin_OnAction(javafx.event.ActionEvent actionEvent) {
-        String usernametxt = usernameTxt.getText();
-        String passwordtxt = password.getText();
 
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("/view/mainView.fxml")); // Load main application screen
-                Stage stage = new Stage(); //btnLogin.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Welcome to Railway Management System");
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
+        try{
+            String usernametxt = usernameTxt.getText();
+            String passwordtxt = password.getText();
+
+            String username =login.getUserName(usernametxt);
+
+
+            if (usernametxt.equals(username)){
+                String password= login.getPassword(passwordtxt,username);
+               if(password != null){
+                   if(password.equals(passwordtxt)){
+                       try {
+                           content.getChildren().clear();
+                           AnchorPane load = FXMLLoader.load(getClass().getResource("/view/mainView.fxml"));
+                           content.getChildren().add(load);
+                       } catch (IOException e) {
+                           e.printStackTrace();
+                       }
+
+
+                   }else {
+                       new Alert(Alert.AlertType.ERROR,"password is incorrect").show();
+                   }
+               }else {
+                   new Alert(Alert.AlertType.ERROR,"password is incorrect").show();
+               }
+            }else {
+                new Alert(Alert.AlertType.ERROR,"invalid username").show();
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
     /**

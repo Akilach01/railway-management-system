@@ -5,24 +5,32 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class mainviewContoller implements Initializable{
-
-@FXML
-private AnchorPane content;
-
-@Override
-public void initialize(URL url, ResourceBundle resourceBundle) {
-   navigateTo("/view/bookingView.fxml");
-}
+public class mainviewContoller implements Initializable {
 
     @FXML
-    void navigateToBooking(ActionEvent event) { navigateTo("/view/bookingView.fxml");
+    private AnchorPane content;
+
+    @FXML
+    private AnchorPane body;
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        navigateTo("/view/bookingView.fxml");
+    }
+
+    @FXML
+    void navigateToBooking(ActionEvent event) {
+        navigateTo("/view/bookingView.fxml");
     }
 
     @FXML
@@ -36,7 +44,9 @@ public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
     @FXML
-    void navigateToScheduleManagement(ActionEvent event) { navigateTo("/view/scheduleManageView.fxml");}
+    void navigateToScheduleManagement(ActionEvent event) {
+        navigateTo("/view/scheduleManageView.fxml");
+    }
 
     @FXML
     void navigateToPromotion(ActionEvent event) {
@@ -44,11 +54,14 @@ public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
     @FXML
-    void navigateToUserManagement(ActionEvent event) { navigateTo("/view/userManagementView.fxml");}
+    void navigateToUserManagement(ActionEvent event) {
+        navigateTo("/view/userManagementView.fxml");
+    }
 
     @FXML
-    void navigateToBookingManagement(ActionEvent event) { navigateTo("/view/bookingManagement.fxml");}
-
+    void navigateToBookingManagement(ActionEvent event) {
+        navigateTo("/view/bookingManagement.fxml");
+    }
 
 
     public void navigateTo(String fxmlPath) {
@@ -71,7 +84,7 @@ public void initialize(URL url, ResourceBundle resourceBundle) {
         } catch (IOException e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Fail to load page!").show();
-        } 
+        }
     }
 
     public void navigateToSendMailView(ActionEvent actionEvent) {
@@ -79,7 +92,22 @@ public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
     public void logoutOnAction(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setContentText("Do you really want to logout ?");
 
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // Proceed to log out if OK is clicked
+            try {
+                body.getChildren().clear();
+                AnchorPane load = FXMLLoader.load(getClass().getResource("/view/loginView.fxml"));
+                body.getChildren().add(load);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 }
 

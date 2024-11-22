@@ -19,5 +19,5 @@ public class bookingDto {
     private String  tr_id ;
     private String from ;
     private String to;
-    
+    private  int no_of_passengers;
 }
