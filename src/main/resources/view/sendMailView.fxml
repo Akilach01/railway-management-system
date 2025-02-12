@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse.railway_management.railway_management_system.controller.sendMailcontroller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse.railway_management.railway_management_system.controller.sendMailController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="210.0" layoutY="22.0" prefHeight="28.0" prefWidth="157.0" style="-fx-background-color: #ffffff;" text="Send Mail">
          <font>

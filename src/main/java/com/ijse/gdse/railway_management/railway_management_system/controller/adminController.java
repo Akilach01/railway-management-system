@@ -9,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import com.ijse.gdse.railway_management.railway_management_system.dto.registerAdminDto;
-import com.ijse.gdse.railway_management.railway_management_system.Model.adminModel;
+import com.ijse.gdse.railway_management.railway_management_system.dao.custom.impl.adminDAOImpl;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -41,7 +41,7 @@ public class adminController {
     void register(ActionEvent event) {
 
     }
-adminModel adminModel = new adminModel();
+adminDAOImpl adminModel = new adminDAOImpl();
 
     @FXML
     void LoginMouseClickAction(MouseEvent event) throws IOException {
@@ -80,7 +80,7 @@ adminModel adminModel = new adminModel();
             new Alert(Alert.AlertType.INFORMATION, "Registration Complete.Please login...!").show();
 
             content.getChildren().clear();
-            AnchorPane load = FXMLLoader.load(getClass().getResource("/View/register.fxml"));
+            AnchorPane load = FXMLLoader.load(getClass().getResource("/view/registerAdmin.fxml"));
             content.getChildren().add(load);
 
         } else {

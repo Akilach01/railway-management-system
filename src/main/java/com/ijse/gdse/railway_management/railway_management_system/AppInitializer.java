@@ -18,7 +18,7 @@ public class AppInitializer extends Application {
             // Load FXML file
             Parent root = FXMLLoader.load(getClass().getResource("/view/loginView.fxml"));
             Scene scene = new Scene(root);
-            primaryStage.setTitle(" Railway Management System");
+            primaryStage.setTitle(" JourneyHub Railway Management System");
             primaryStage.setScene(scene);
             primaryStage.show();
        } catch (IOException e) {

@@ -13,7 +13,7 @@ public class bookingTm {
     private String b_id;
     private String b_date;
     private String  user_id ;
-    private int  total_fare ;
+    private Double total_fare ;
     private String status;
     private String  tr_id ;
     private String from ;

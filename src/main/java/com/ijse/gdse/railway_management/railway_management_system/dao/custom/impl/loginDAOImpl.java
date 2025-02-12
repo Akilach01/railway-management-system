@@ -1,10 +1,12 @@
-package com.ijse.gdse.railway_management.railway_management_system.Model;
+package com.ijse.gdse.railway_management.railway_management_system.dao.custom.impl;
 
+import com.ijse.gdse.railway_management.railway_management_system.dao.custom.adminDAO;
+import com.ijse.gdse.railway_management.railway_management_system.dao.custom.loginDAO;
 import com.ijse.gdse.railway_management.railway_management_system.util.crudUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class loginModel {
+public class loginDAOImpl implements loginDAO {
    public String getUserName(String username)throws SQLException,ClassNotFoundException{
       String sql = "select username from admin where username= ?";
         ResultSet res =crudUtil.execute(sql,username);

@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="535.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse.railway_management.railway_management_system.controller.scheduleController">
+<AnchorPane prefHeight="542.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse.railway_management.railway_management_system.controller.scheduleController">
    <children>
-      <ImageView fitHeight="535.0" fitWidth="680.0" layoutX="-7.0">
+      <ImageView fitHeight="542.0" fitWidth="706.0" layoutX="-7.0">
          <image>
             <Image url="@../images/train%20ticket%20booking.jpg" />
          </image>
@@ -30,27 +30,27 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>
-      <TextField layoutX="344.0" layoutY="71.0" promptText="TrainId">
+      <TextField fx:id="txtTrainId" layoutX="384.0" layoutY="71.0" promptText="TrainId">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <TextField layoutX="103.0" layoutY="71.0" promptText="Schedule ID">
+      <TextField fx:id="txtScheduleId" layoutX="119.0" layoutY="71.0" promptText="Schedule ID">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <TextField layoutX="344.0" layoutY="123.0" promptText="Destination">
+      <TextField fx:id="txtDestination" layoutX="384.0" layoutY="123.0" promptText="Destination">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <TextField layoutX="103.0" layoutY="123.0" promptText="Start_Station">
+      <TextField fx:id="txtStartStation" layoutX="119.0" layoutY="123.0" promptText="Start_Station">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <TableView layoutX="15.0" layoutY="308.0" prefHeight="199.0" prefWidth="629.0">
+      <TableView fx:id="scheduleTable" layoutX="35.0" layoutY="298.0" prefHeight="226.0" prefWidth="630.0">
         <columns>
           <TableColumn fx:id="colScheduleId" prefWidth="100.0" text="Schedule ID" />
             <TableColumn fx:id="colArrival" prefWidth="100.0" text="Arrival" />
@@ -66,16 +66,16 @@
             <Font name="Times New Roman Bold" size="24.0" />
          </font>
       </Label>
-      <TextField layoutX="54.0" layoutY="169.0" promptText="Arrival">
+      <TextField fx:id="txtArrival" layoutX="67.0" layoutY="169.0" promptText="Arrival">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <TextField layoutX="229.0" layoutY="169.0" promptText="Departure">
+      <TextField fx:id="txtDeparture" layoutX="252.0" layoutY="169.0" promptText="Departure">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <DatePicker layoutX="415.0" layoutY="169.0" promptText="Travel_date" />
+      <DatePicker fx:id="txtTravelDate" layoutX="445.0" layoutY="169.0" promptText="Travel_date" />
    </children>
 </AnchorPane>

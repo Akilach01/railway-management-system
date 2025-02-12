@@ -28,6 +28,10 @@ public class mainviewContoller implements Initializable {
         navigateTo("/view/bookingView.fxml");
     }
 
+
+    @FXML
+    void navigateToRegisterUser(ActionEvent event) {navigateTo("/view/registerUser.fxml");}
+
     @FXML
     void navigateToBooking(ActionEvent event) {
         navigateTo("/view/bookingView.fxml");
@@ -109,6 +113,8 @@ public class mainviewContoller implements Initializable {
 
         }
     }
+
+
 }
 
 

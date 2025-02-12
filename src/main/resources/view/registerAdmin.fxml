@@ -9,30 +9,30 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="content" prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse.railway_management.railway_management_system.controller.adminController">
+<AnchorPane fx:id="content" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse.railway_management.railway_management_system.controller.adminController">
    <children>
-      <ImageView fitHeight="456.0" fitWidth="700.0" layoutY="-2.0">
+      <ImageView fitHeight="500.0" fitWidth="800.0" layoutY="-2.0">
          <image>
-            <Image url="@../images/register%20rail.gif" />
+            <Image url="@../images/register rail.gif" />
          </image>
       </ImageView>
-      <TextField fx:id="userNameField" layoutX="122.0" layoutY="93.0" prefHeight="27.0" prefWidth="185.0" promptText="username">
+      <TextField fx:id="userNameField" layoutX="171.0" layoutY="93.0" prefHeight="27.0" prefWidth="185.0" promptText="username">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></TextField>
-      <TextField fx:id="passwordField" layoutX="390.0" layoutY="93.0" prefHeight="27.0" prefWidth="185.0" promptText="password">
+      <TextField fx:id="passwordField" layoutX="432.0" layoutY="93.0" prefHeight="27.0" prefWidth="185.0" promptText="password">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></TextField>
-      <TextField fx:id="contactNoField" layoutX="122.0" layoutY="167.0" prefHeight="27.0" prefWidth="185.0" promptText="contact no.">
+      <TextField fx:id="contactNoField" layoutX="171.0" layoutY="167.0" prefHeight="27.0" prefWidth="185.0" promptText="contact no.">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></TextField>
-      <TextField fx:id="gmailtext" layoutX="393.0" layoutY="167.0" prefHeight="27.0" prefWidth="185.0" promptText="gmail">
+      <TextField fx:id="gmailtext" layoutX="432.0" layoutY="167.0" prefHeight="27.0" prefWidth="185.0" promptText="gmail">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></TextField>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="155.0" layoutY="248.0" mnemonicParsing="false" onAction="#registerOnAction" prefHeight="26.0" prefWidth="390.0" style="-fx-background-color: #0949ec;" text="Register" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="205.0" layoutY="250.0" mnemonicParsing="false" onAction="#registerOnAction" prefHeight="26.0" prefWidth="390.0" style="-fx-background-color: #0949ec;" text="Register" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>

@@ -1,9 +1,11 @@
-package com.ijse.gdse.railway_management.railway_management_system.Model;
+package com.ijse.gdse.railway_management.railway_management_system.dao.custom.impl;
 
+import com.ijse.gdse.railway_management.railway_management_system.dao.custom.adminDAO;
+import com.ijse.gdse.railway_management.railway_management_system.dao.custom.userDAO;
 import com.ijse.gdse.railway_management.railway_management_system.dto.userDto;
 import com.ijse.gdse.railway_management.railway_management_system.util.crudUtil;
 
-public class userModel {
+public class userDAOImpl implements userDAO {
 
 
     public String handleRegisterUser(userDto userDto) throws Exception{

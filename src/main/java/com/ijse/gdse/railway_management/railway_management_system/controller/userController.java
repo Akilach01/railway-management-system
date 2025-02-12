@@ -1,27 +1,31 @@
 package com.ijse.gdse.railway_management.railway_management_system.controller;
-import com.ijse.gdse.railway_management.railway_management_system.Model.userModel;
+import com.ijse.gdse.railway_management.railway_management_system.dao.custom.impl.userDAOImpl;
+import com.ijse.gdse.railway_management.railway_management_system.db.DBConnection;
 import com.ijse.gdse.railway_management.railway_management_system.dto.tm.userTm;
-import com.ijse.gdse.railway_management.railway_management_system.dto.userDto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.Window;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class userController {
 
+    @FXML
+    private TextField txtContactNo;
+
+    @FXML
+    private TextField txtGmail;
+
+    @FXML
+    private ComboBox<?> txtUserId;
+
+    @FXML
+    private TextField txtUserName;
 
     @FXML
     private Button btnDelete;
@@ -31,6 +35,9 @@ public class userController {
 
     @FXML
     private Button btnUpdate;
+
+    @FXML
+    private TableView<?> userTable;
 
     @FXML
     private TableColumn<userTm, Integer> colContactNo;
@@ -44,118 +51,162 @@ public class userController {
     @FXML
     private TableColumn<userTm, String> colUserName;
 
+
+    private ObservableList<userTm> userList = FXCollections.observableArrayList();
+    private userDAOImpl userModel = new userDAOImpl();
+
+    @FXML
+    public void initialize() {
+        colUserId.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        colUserName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colContactNo.setCellValueFactory(new PropertyValueFactory<>("contactNo"));
+        colGmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+        loadUsers();
+    }
+
     @FXML
     void deleteUserOnAction(ActionEvent event) {
+
+        userTm selectedUser = userTable.getSelectionModel().getSelectedItem();
+        if (selectedUser == null) {
+            showAlert(Alert.AlertType.WARNING, "Selection Error", "Please select a user to delete.");
+            return;
+        }
+
+        try (Connection conn = DBConnection.getConnection()) {
+            String query = "DELETE FROM users WHERE user_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, selectedUser.getU_id());
+            int deleted = stmt.executeUpdate();
+
+            if (deleted > 0) {
+                userList.remove(selectedUser);
+                userTable.refresh();
+                showAlert(Alert.AlertType.INFORMATION, "Success", "User deleted successfully.");
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Delete Failed", "User not found.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Database Error", "Error deleting user.");
+        }
     }
 
     @FXML
     void saveUserOnAction(ActionEvent event) {
+        String userId = txtUserId.getId();
+        String name = txtUserName.getText();
+        String email = txtGmail.getText();
+        int contactNo;
+
+        if (userId.isEmpty() || name.isEmpty() || txtContactNo.getText().isEmpty() || email.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Please fill in all fields.");
+            return;
+        }
+
+        try {
+            contactNo = Integer.parseInt(txtContactNo.getText());
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Contact number must be a valid integer.");
+            return;
+        }
+
+        try (Connection conn = DBConnection.getConnection()) {
+            String query = "INSERT INTO users (user_id, name, contact_no, email) VALUES (?, ?, ?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, userId);
+            stmt.setString(2, name);
+            stmt.setInt(3, contactNo);
+            stmt.setString(4, email);
+            stmt.executeUpdate();
+
+            userList.add(new userTm(userId, name, contactNo, email));
+            userTable.setItems(userList);
+
+            clearFields();
+            showAlert(Alert.AlertType.INFORMATION, "Success", "User registered successfully.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Database Error", "Error registering user.");
+        }
     }
+
 
     @FXML
     void updateUserOnAction(ActionEvent event) {
-    }
 
-
-    @FXML
-    private TextField userIdField;
-
-    @FXML
-    private TextField nameField;
-
-    @FXML
-    private TextField contactNoField;
-
-    @FXML
-    private TextField gmailtext;
-
-
-    @FXML
-    private AnchorPane content;
-
-    @FXML
-    void register(ActionEvent event) throws Exception {
-        handleRegisterUser();
-    }
-
-
-    private final userModel model = new userModel();
-
-    public void handleRegisterUser() throws Exception {
-        userDto UserDto = new userDto(userIdField.getText(), nameField.getText(), Integer.parseInt(contactNoField.getText()), gmailtext.getText());
-        String resp = model.handleRegisterUser(UserDto);
-
-        if (resp.equals("success")) {
-            new Alert(Alert.AlertType.INFORMATION, resp).show();
-        } else {
-            new Alert(Alert.AlertType.ERROR, resp).show();
+        userTm selectedUser = userTable.getSelectionModel().getSelectedItem();
+        if (selectedUser == null) {
+            showAlert(Alert.AlertType.WARNING, "Selection Error", "Please select a user to update.");
+            return;
         }
-//userDto dto = new userDto(userIdField.getText(),nameField.getText(),contactNoField.getText());
-    }
 
-    public void gotoLogin(ActionEvent actionEvent) {
-        navigateTo("/view/loginView.fxml");
-    }
+        String userId = txtUserId.getId();
+        String name = txtUserName.getText();
+        String email = txtGmail.getText();
+        int contactNo;
 
-    public void navigateTo(String fxmlPath) {
         try {
-            content.getChildren().clear();
-            AnchorPane load = FXMLLoader.load(getClass().getResource(fxmlPath));
+            contactNo = Integer.parseInt(txtContactNo.getText());
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Contact number must be a valid integer.");
+            return;
+        }
 
-//  -------- Loaded anchor edges are bound to the content anchor --------
-//      (1) Bind the loaded FXML to all edges of the content anchorPane
-            load.prefWidthProperty().bind(content.widthProperty());
-            load.prefHeightProperty().bind(content.heightProperty());
+        try (Connection conn = DBConnection.getConnection()) {
+            String query = "UPDATE users SET name = ?, contact_no = ?, email = ? WHERE user_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, name);
+            stmt.setInt(2, contactNo);
+            stmt.setString(3, email);
+            stmt.setString(4, userId);
+            int updated = stmt.executeUpdate();
 
-//      (2) Bind the loaded FXML to all edges of the AnchorPane
-//            AnchorPane.setTopAnchor(load, 0.0);
-//            AnchorPane.setRightAnchor(load, 0.0);
-//            AnchorPane.setBottomAnchor(load, 0.0);
-//            AnchorPane.setLeftAnchor(load, 0.0);
-
-            content.getChildren().add(load);
-        } catch (IOException e) {
+            if (updated > 0) {
+                selectedUser.setName(name);
+                selectedUser.setContact_no(contactNo);
+                selectedUser.setGmail(email);
+                userTable.refresh();
+                showAlert(Alert.AlertType.INFORMATION, "Success", "User updated successfully.");
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Update Failed", "No user found with the given ID.");
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Fail to load page!").show();
+            showAlert(Alert.AlertType.ERROR, "Database Error", "Error updating user.");
         }
+    }
 
-      /*  @FXML
-        void openSendMailModel(ActionEvent event){
-            userTm selectedItem = tbluser.getSelectionModel().getSelectedItem();
-            if (selectedItem == null) {
-                new Alert(Alert.AlertType.WARNING, "Please select customer..!");
-                return;
-            }
-
-            try {
-                // Load the mail dialog from FXML file
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SendMailView.fxml"));
-                Parent load = loader.load();
-
-                sendMailcontroller sendMailController = loader.getController();
-
-                String email = selectedItem.getGmail();
-                sendMailController.setGmail(gmailtext);
-
-                Stage stage = new Stage();
-                stage.setScene(new Scene(load));
-                stage.setTitle("Send email");
-                // stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/mail_icon.png")));
-
-                // Set window as modal
-                stage.initModality(Modality.APPLICATION_MODAL);
-
-                Window underWindow = btnUpdate.getScene().getWindow();
-                stage.initOwner(underWindow);
-
-                stage.showAndWait();
-            } catch (IOException e) {
-                new Alert(Alert.AlertType.ERROR, "Fail to load ui..!");
-                e.printStackTrace();
-            }
-        }
-    } */
+private void loadUsers() {
+    userList.clear();
+    try {
+        userList.addAll(userModel.getAllUsers());
+        userTable.setItems(userList);
+    } catch (Exception e) {
+        e.printStackTrace();
     }
 }
+
+private void clearFields() {
+    txtUserId.clear();
+    txtUserName.clear();
+    txtContactNo.clear();
+    txtGmail.clear();
+}
+
+private void showAlert(Alert.AlertType alertType, String title, String message) {
+    Alert alert = new Alert(alertType);
+    alert.setTitle(title);
+    alert.setContentText(message);
+    alert.show();
+}
+
+   }
+
+  }
+
+
+
 
 

@@ -3,13 +3,10 @@ package com.ijse.gdse.railway_management.railway_management_system.controller;
 import com.ijse.gdse.railway_management.railway_management_system.db.DBConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -17,7 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import com.ijse.gdse.railway_management.railway_management_system.Model.loginModel;
+import com.ijse.gdse.railway_management.railway_management_system.dao.custom.impl.loginDAOImpl;
 public class loginController {
 
     public loginController() {
@@ -37,7 +34,7 @@ public class loginController {
     @FXML
     private Button btnLogin;
 
-    private final loginModel login = new loginModel();
+    private final loginDAOImpl login = new loginDAOImpl();
 
     @FXML
         public void btnLogin_OnAction(javafx.event.ActionEvent actionEvent) {
@@ -116,7 +113,7 @@ public class loginController {
 
 
     public void navigateToRegister(javafx.event.ActionEvent actionEvent) {
-        navigateTo("/view/register.fxml");
+        navigateTo("/view/registerAdmin.fxml");
     }
 
     public void navigateTo(String fxmlPath) {
